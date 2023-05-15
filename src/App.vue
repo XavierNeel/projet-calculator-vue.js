@@ -14,7 +14,9 @@ export default {
   name: 'App',
   components: {
     Calculator
-  }
+  },
+
+  
 }
 
 </script>
@@ -22,7 +24,7 @@ export default {
 
 
 <style>
-@import url('./assets/main.css');
+
 @import url('https://fonts.googleapis.com/css2?family=Roboto%3Awght%40300%3B400%3B700&display=swap');
 
 #app {

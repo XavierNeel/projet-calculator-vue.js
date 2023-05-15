@@ -3,34 +3,39 @@
     
 
 <div class="calculator">
-  <div class="input" id="input"></div>
+  <div class="input" id="input">
+    {{ output }}
+    
+
+</div>
   <div class="buttons">
     <div class="operators">
-      <div>+</div>
-      <div>-</div>
-      <div>*</div>
-      <div>/</div>
+        <div @click="operatorPlus">+</div>
+        <div @click="operatorMoins">-</div>
+        <div @click="operatorMulti">*</div>
+        <div @click="operatorDivide">/</div>
     </div>
     <div class="leftPanel">
       <div class="numbers">
-        <div>7</div>
-        <div>8</div>
-        <div>9</div>
-      </div>
+        <div @click= "getNumber('7')">7</div>
+        <div @click= "getNumber('8')">8</div>
+        <div @click= "getNumber('9')">9</div>
+    </div>
       <div class="numbers">
-        <div>4</div>
-        <div>5</div>
-        <div>6</div>
-      </div>
+        <div @click= "getNumber('4')">4</div>
+        <div @click= "getNumber('5')">5</div>
+        <div @click= "getNumber('6')">6</div>
+    </div>
+       
       <div class="numbers">
-        <div>1</div>
-        <div>2</div>
-        <div>3</div>
+        <div @click= "getNumber('1')">1</div>
+        <div @click= "getNumber('2')">2</div>
+        <div @click= "getNumber('3')">3</div>
       </div>
-      <div class="numbers">
-        <div>0</div>
-        <div>.</div>
-        <div id="clear">C</div>
+      <div class="numbers"> 
+        <div @click= "getNumber('0')">0</div>
+        <div @click="numberP">.</div>
+        <div @click="clear">C</div>
       </div>
     </div>
     <div class="equal" id="result">=</div>
@@ -43,6 +48,24 @@
 <script>
 
 export default {
+    data() {
+    return {
+      output:'',
+    }
+   
+  },
+  methods: {
+        clear() {
+            this.output = ''
+        },
+        getNumber(number) {
+            this.output =`${this.output}${number}`;
+
+
+        }
+      
+
+    }
 
 }
 </script>
