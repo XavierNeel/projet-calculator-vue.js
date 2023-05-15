@@ -1,73 +1,101 @@
 <template>
 
-    
-
 <div class="calculator">
-  <div class="input" id="input">
-    {{ output }}
-    
-
+    <div class="input" id="input">
+        {{ output }}
+    </div>
+  
+    <div class="buttons">
+        <div class="operators">
+            <div @click="getOperation('addition')">+</div>
+            <div @click="getOperation('substraction')">-</div>
+            <div @click="getOperation('multiplication')">*</div>
+            <div @click="getOperation('division')">/</div>
+        </div>
+        <div class="leftPanel">
+            <div class="numbers">
+                <div @click= "getNumber('7')">7</div>
+                <div @click= "getNumber('8')">8</div>
+                <div @click= "getNumber('9')">9</div>
+            </div>
+            <div class="numbers">
+                <div @click= "getNumber('4')">4</div>
+                <div @click= "getNumber('5')">5</div>
+                <div @click= "getNumber('6')">6</div>
+            </div>
+            <div class="numbers">
+                <div @click= "getNumber('1')">1</div>
+                <div @click= "getNumber('2')">2</div>
+                <div @click= "getNumber('3')">3</div>
+            </div>
+            <div class="numbers"> 
+                <div @click= "getNumber('0')">0</div>
+                <div @click= "getDot()">.</div>
+                <div @click="clear">C</div>
+            </div>
+        </div>
+        <div @click="result"   class="equal" id="result">=</div>
+    </div>
 </div>
-  <div class="buttons">
-    <div class="operators">
-        <div @click="operatorPlus">+</div>
-        <div @click="operatorMoins">-</div>
-        <div @click="operatorMulti">*</div>
-        <div @click="operatorDivide">/</div>
-    </div>
-    <div class="leftPanel">
-      <div class="numbers">
-        <div @click= "getNumber('7')">7</div>
-        <div @click= "getNumber('8')">8</div>
-        <div @click= "getNumber('9')">9</div>
-    </div>
-      <div class="numbers">
-        <div @click= "getNumber('4')">4</div>
-        <div @click= "getNumber('5')">5</div>
-        <div @click= "getNumber('6')">6</div>
-    </div>
-       
-      <div class="numbers">
-        <div @click= "getNumber('1')">1</div>
-        <div @click= "getNumber('2')">2</div>
-        <div @click= "getNumber('3')">3</div>
-      </div>
-      <div class="numbers"> 
-        <div @click= "getNumber('0')">0</div>
-        <div @click="numberP">.</div>
-        <div @click="clear">C</div>
-      </div>
-    </div>
-    <div class="equal" id="result">=</div>
-  </div>
-</div>
-
-
 </template>
 
 <script>
-
 export default {
     data() {
-    return {
-      output:'',
-    }
-   
-  },
-  methods: {
+        return {
+            output:'',
+            previousValue: null,
+            nextValue: false,
+        }
+    },
+    methods: {
         clear() {
             this.output = ''
         },
         getNumber(number) {
+            if(this.nextValue){
+                this.output = '';
+                this.nextValue = false;
+            }
             this.output =`${this.output}${number}`;
-
-
+        },
+        getDot() {
+            if(this.output.indexOf('.') === -1) {
+                this.output = this.output + '.' ;
+            }
+        },
+        getOperation(string) {
+            switch (string){
+                case 'addition':
+                    this.operation = (a,b) => {
+                        return parseFloat(a) + parseFloat(b);
+                    }
+                    break;
+                case 'substraction':
+                    this.operation = (a,b) => {
+                        return parseFloat(a) - parseFloat(b);
+                    }
+                    break;
+                case 'multiplication':
+                    this.operation = (a,b) => {
+                        return parseFloat(a) * parseFloat(b);
+                    }
+                    break;
+                    case 'division':
+                        this.operation = (a,b) => {
+                            return parseFloat(a) / parseFloat(b);
+                        }
+                    break;
+                }
+                this.previousValue = this.output;
+                this.nextValue = true;
+            },
+            result() {
+                this.output = `${this.operation(this.previousValue, this.output)}`;
+                this.previousValue = null;
+            }
         }
-      
-
     }
-
-}
 </script>
 
 <style>
@@ -109,20 +137,16 @@ body {
   box-shadow: inset 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
 }
 
-.buttons {}
-
-.operators {}
-
 .operators div {
   display: inline-block;
-  border: 1px solid #bbb;
+  border: 1px solid #ec441a;
   border-radius: 1px;
   width: 80px;
   text-align: center;
   padding: 10px;
   margin: 20px 4px 10px 0;
   cursor: pointer;
-  background-color: #ddd;
+  background-color: #ec441a;
   transition: border-color .2s ease-in-out, background-color .2s, box-shadow .2s;
 }
 
@@ -142,15 +166,16 @@ body {
 }
 
 .numbers div {
+    color: white;
   display: inline-block;
-  border: 1px solid #ddd;
+  border: 1px solid #000000;
   border-radius: 1px;
   width: 80px;
   text-align: center;
   padding: 10px;
   margin: 10px 4px 10px 0;
   cursor: pointer;
-  background-color: #f9f9f9;
+  background-color: #000000;
   transition: border-color .2s ease-in-out, background-color .2s, box-shadow .2s;
 }
 
