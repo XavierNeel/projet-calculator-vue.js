@@ -108,10 +108,12 @@ body {
 }
 
 .calculator {
+    padding-top: 10px;
+    padding-bottom: 5px;
     background-color: #e4e1e1;
     -webkit-box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
     box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
-    border-radius: 1px;
+    border-radius: 10px;
 }
 
 .input {
@@ -121,10 +123,9 @@ body {
     width: 96%;
     background-color: #000000;
     border: 1px solid #ddd;
-    border-radius: 1px;
+    border-radius: 10px;
     height: 60px;
     text-align: right;
-    margin-right: 6px;
     font-size: 2.5rem;
     overflow-x: auto;
     transition: all .2s ease-in-out;
@@ -146,7 +147,7 @@ body {
     color: white;
     display: inline-block;
     border: 1px solid #ec441a;
-    border-radius: 1px;
+    border-radius: 10px;
     width: 80px;
     text-align: center;
     padding: 10px;
@@ -177,7 +178,7 @@ body {
     color: white;
     display: inline-block;
     border: 1px solid #000000;
-    border-radius: 1px;
+    border-radius: 10px;
     width: 80px;
     text-align: center;
     padding: 10px;
@@ -199,11 +200,12 @@ body {
 
 .equal {
     border: 1px solid #ec441a;
-    border-radius: 1px;
+    border-radius: 10px;
     width: 96%;
     text-align: center;
     margin-left: 2%;
     margin-right: 2%;
+    margin-bottom: 5px;
     vertical-align: top;
     cursor: pointer;
     color: #FFF;
